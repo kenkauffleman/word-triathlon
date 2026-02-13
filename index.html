@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Triathlon</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <h1>Word Triathlon</h1>
+        <p class="subtitle">Wordle 7 → Spelling Bee → Connections</p>
+      </header>
+
+      <section class="panel" id="phase-wordle" aria-labelledby="wordle-title">
+        <div class="panel-head">
+          <h2 id="wordle-title">Phase 1: 7-Letter Wordle</h2>
+          <span class="badge" id="wordle-status">In Progress</span>
+        </div>
+        <p class="helper-text">
+          Guess the 7-letter word in 6 tries. Your solved word unlocks Phase 2.
+        </p>
+
+        <div id="wordle-grid" class="wordle-grid" aria-live="polite"></div>
+
+        <div class="wordle-controls">
+          <input
+            id="wordle-input"
+            type="text"
+            maxlength="7"
+            minlength="7"
+            inputmode="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Enter 7 letters"
+            aria-label="Wordle guess"
+          />
+          <button id="wordle-submit" class="btn">Submit</button>
+        </div>
+        <p id="wordle-message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" id="phase-bee" aria-labelledby="bee-title">
+        <div class="panel-head">
+          <h2 id="bee-title">Phase 2: Spelling Bee</h2>
+          <span class="badge" id="bee-status">Locked</span>
+        </div>
+        <p class="helper-text">
+          Build words using only the hive letters. The center letter is required. Find all
+          connection words to unlock Phase 3.
+        </p>
+
+        <div class="bee-layout">
+          <div class="bee-hive" id="bee-hive" aria-label="Spelling Bee letters"></div>
+          <div class="bee-controls">
+            <input
+              id="bee-input"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Type a word"
+              aria-label="Spelling Bee word"
+            />
+            <div class="bee-buttons">
+              <button id="bee-submit" class="btn" disabled>Submit</button>
+              <button id="bee-shuffle" class="btn btn-ghost" disabled>Shuffle</button>
+            </div>
+            <p id="bee-message" class="message" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="found-words-wrap">
+          <h3>Found words</h3>
+          <ul id="found-words" class="found-words"></ul>
+        </div>
+      </section>
+
+      <section class="panel" id="phase-connections" aria-labelledby="connections-title">
+        <div class="panel-head">
+          <h2 id="connections-title">Phase 3: Connections</h2>
+          <span class="badge" id="connections-status">Locked</span>
+        </div>
+        <p class="helper-text">
+          Select 4 related words and submit. You must find all 16 target words in Spelling Bee first.
+        </p>
+
+        <div id="connections-grid" class="connections-grid" aria-live="polite"></div>
+
+        <div class="connections-controls">
+          <button id="connections-submit" class="btn" disabled>Submit Group</button>
+          <button id="connections-clear" class="btn btn-ghost" disabled>Clear Selection</button>
+        </div>
+        <p id="connections-message" class="message" role="status" aria-live="polite"></p>
+
+        <div id="solved-groups" class="solved-groups"></div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
